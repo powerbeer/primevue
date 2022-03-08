@@ -121,6 +121,8 @@ router.beforeEach(function (to, from, next) {
     next();
 });
 
+
+
 const app = createApp(AppWrapper);
 
 app.config.globalProperties.$appState = reactive({theme: 'lara-light-blue', darkTheme: false, codeSandbox: false, sourceType: 'options-api'});

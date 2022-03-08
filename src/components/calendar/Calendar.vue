@@ -8,7 +8,7 @@
                 <div :ref="overlayRef" :class="panelStyleClass" v-if="inline ? true : overlayVisible" :role="inline ? null : 'dialog'" @click="onOverlayClick" @mouseup="onOverlayMouseUp">
                     <template v-if="!timeOnly">
                         <div class="p-datepicker-group-container">
-                            <div class="p-datepicker-group" v-for="(month,groupIndex) of months" :key="month.month + month.year">
+                            <div class="p-datepicker-group" v-for="(month,groupIndex) of months" :key="month.month + convertTobuddhaYear(month.year)">
                                 <div class="p-datepicker-header">
                                     <slot name="header"></slot>
                                     <button class="p-datepicker-prev p-link" v-show="groupIndex === 0" @click="onPrevButtonClick" type="button" @keydown="onContainerButtonKeydown" v-ripple :disabled="$attrs.disabled">
@@ -19,11 +19,11 @@
                                             {{getMonthName(month.month)}}
                                         </button>
                                         <button type="button" @click="switchToYearView" @keydown="onContainerButtonKeydown" v-if="currentView !== 'year'" class="p-datepicker-year p-link" :disabled="switchViewButtonDisabled">
-                                            {{getYear(month)}}
+                                            {{convertTobuddhaYear(getYear(month))}}
                                         </button>
                                         <span class="p-datepicker-decade" v-if="currentView === 'year'">
                                             <slot name="decade" :years="yearPickerValues">
-                                                {{yearPickerValues[0]}} - {{yearPickerValues[yearPickerValues.length - 1]}}
+                                                {{convertTobuddhaYear(yearPickerValues[0])}} - {{convertTobuddhaYear(yearPickerValues[yearPickerValues.length - 1])}}
                                             </slot>
                                         </span>
                                     </div>
@@ -73,7 +73,7 @@
                         <div class="p-yearpicker" v-if="currentView === 'year'">
                             <span v-for="y of yearPickerValues" :key="y" @click="onYearSelect($event, y)" @keydown="onYearCellKeydown($event,y)"
                                     class="p-yearpicker-year" :class="{'p-highlight': isYearSelected(y)}" v-ripple>
-                                {{y}}
+                                {{convertTobuddhaYear(y)}}
                             </span>
                         </div>
                     </template>
@@ -147,12 +147,17 @@ import OverlayEventBus from 'primevue/overlayeventbus';
 import Button from 'primevue/button';
 import Ripple from 'primevue/ripple';
 
+
 export default {
     name: 'Calendar',
     inheritAttrs: false,
     emits: ['show', 'hide', 'input', 'month-change', 'year-change', 'date-select', 'update:modelValue', 'today-click', 'clear-click', 'focus', 'blur', 'keydown'],
     props: {
         modelValue: null,
+		buddhaYear: {
+            type: Boolean,
+            default: false
+        },
         selectionMode: {
             type: String,
             default: 'single'
@@ -316,6 +321,7 @@ export default {
     preventFocus: false,
     typeUpdate: false,
     created() {
+		//console.log('create calendar#########')
         this.updateCurrentMetaData();
     },
     mounted() {
@@ -414,6 +420,24 @@ export default {
         }
     },
     methods: {
+		convertbuddhaYearToEngYear(val){
+			if(this.buddhaYear==true){
+				if(val>2500){
+					return  val-543;
+				}
+			}else{
+				return val;
+			}
+		},
+		convertTobuddhaYear(val){
+			if(this.buddhaYear==true){
+				if(val<=2500){
+					return  val+543;
+				}
+			}else{
+				return val;
+			}
+		},
         isComparable() {
             return this.modelValue != null && typeof this.modelValue !== 'string';
         },

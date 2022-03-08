@@ -22,7 +22,7 @@
                     </div>
                     <div class="field col-12 md:col-4">
                         <label for="icon">Icon</label>
-                        <Calendar id="icon" v-model="date3" :showIcon="true" />
+                        <Calendar id="icon"  v-model="date3" :showIcon="true" />
                     </div>
                     <div class="field col-12 md:col-4">
                         <label for="minmax">MinMax</label>
@@ -76,6 +76,11 @@
                     <div class="field col-12 md:col-4">
                         <label for="touchUI">TouchUI</label>
                         <Calendar id="touchUI" v-model="date13" :touchUI="true" />
+                    </div>
+
+					<div class="field col-12 md:col-4">
+                        <label for="basic">Buddha Year</label>
+                        <Calendar id="basic" v-model="date1" :buddhaYear="true" autocomplete="off" />
                     </div>
                 </div>
 

@@ -5,6 +5,11 @@ Fork แยกมาเนื่องจากไม่สามารถ  Comm
  ## แก้ไขเรื่อง calendar ให้สามารถใช้ พ.ศ. ได้ (Buddha Year)
    โดยเพิ่มตัวแปร :buddhaYear=true  กรณีต้องการให้แสดงเป็นพ.ศ 
 
+การติดตั้ง
+
+npm i primevue-beer
+
+
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

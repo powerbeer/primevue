@@ -1,10 +1,10 @@
 {
-  "name": "primevue",
-  "version": "3.12.1-SNAPSHOT",
-  "homepage": "https://www.primefaces.org/primevue",
+  "name": "primevue-beer",
+  "version": "3.12.3-SNAPSHOT",
+  "homepage": "https://github.com/powerbeer/primevue",
   "repository": {
     "type": "git",
-    "url": "https://github.com/primefaces/primevue.git"
+    "url": "https://github.com/powerbeer/primevue.git"
   },
   "license": "MIT",
   "scripts": {
